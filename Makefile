@@ -2,8 +2,8 @@ CXX = g++
 CXXFLAGS = -std=c++17 -g -Wall -I. -Isrc/app/encryptDecrypt -Isrc/app/file_handling -Isrc/app/processes
 RM = cmd /c del /q /f
 
-MAIN_TARGET = encrypt_decrypt
-CRYPTION_TARGET = cryption
+MAIN_TARGET = encrypt_decrypt.exe
+CRYPTION_TARGET = cryption.exe
 
 MAIN_SRC = main.cpp \
            src/app/processes/ProcessManagement.cpp \

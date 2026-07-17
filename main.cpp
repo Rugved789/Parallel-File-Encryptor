@@ -1,5 +1,6 @@
 #include <iostream>
 #include <filesystem>
+#include <algorithm>
 #include "./src/app/processes/ProcessManagement.hpp"
 #include "./src/app/processes/Task.hpp"
 
@@ -10,11 +11,14 @@ int main(int argc, char* argv[]){
     std::string directory;
     std::string action;
 
-    std::cout << "Enter the directory path: " << std::endl;
+    std::cout << "Enter the directory path: ";
     std::getline(std::cin, directory);
 
     std::cout << "Enter the action (encryption/decryption) : " << std::endl;
     std::getline(std::cin, action);
+
+    // Convert action to uppercase for comparison
+    std::transform(action.begin(), action.end(), action.begin(), ::toupper);
 
     try{
         if(fs::exists(directory) && fs::is_directory(directory)){
@@ -25,7 +29,7 @@ int main(int argc, char* argv[]){
                     IO io(filePath);
                     std::fstream f_stream = io.getFileStream();
                     if(f_stream.is_open()){
-                        Action taskAction = (action == "ENCRYPT" ? Action::ENCRYPT : Action::DECRYPT);
+                        Action taskAction = (action.find("ENCRYPT") != std::string::npos ? Action::ENCRYPT : Action::DECRYPT);
                         auto task = std::make_unique<Task>(std::move(f_stream), taskAction, filePath);
                         processManager.submitToQueue(std::move(task));
                     }

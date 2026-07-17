@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug encrypt_decrypt",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/encrypt_decrypt.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/mingw64/bin/gdb.exe",
+            "preLaunchTask": "build"
+        },
+        {
+            "name": "Debug cryption",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cryption.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/mingw64/bin/gdb.exe",
+            "preLaunchTask": "build"
+        }
+    ]
+}
