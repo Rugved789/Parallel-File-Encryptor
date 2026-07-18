@@ -1,6 +1,8 @@
 #include "Cryption.hpp"
 #include "../file_handling/ReadEnv.cpp"
 #include <vector>
+#include <ctime>
+#include <iomanip>
 #include <fstream>
 
 const unsigned char ENCRYPTION_MARKER = 0xFF;
@@ -55,7 +57,11 @@ int executeCryption(Task &task){
     out.write(reinterpret_cast<char*>(fileContent.data()), fileContent.size());
     out.flush();
     out.close();
-    
+
+
+    std::time_t t = std::time(nullptr);
+    std::tm* now = std::localtime(&t);
+    std::cout<<"Existing the encryption/decryption at: "<<std::put_time(now,fmt:"%Y-%m-%d %H:%M:%S")<<std::endl;
     return 0;
 }
 
