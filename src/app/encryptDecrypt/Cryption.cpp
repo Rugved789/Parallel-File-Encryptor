@@ -61,7 +61,7 @@ int executeCryption(Task &task){
 
     std::time_t t = std::time(nullptr);
     std::tm* now = std::localtime(&t);
-    std::cout<<"Existing the encryption/decryption at: "<<std::put_time(now,fmt:"%Y-%m-%d %H:%M:%S")<<std::endl;
+    std::cout<<"Existing the encryption/decryption at: "<<std::put_time(now,"%Y-%m-%d %H:%M:%S")<<std::endl;
     return 0;
 }
 

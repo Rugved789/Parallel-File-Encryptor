@@ -6,29 +6,29 @@
 #include <memory>
 #include <mutex>
 #include <atomic>
-#include <semaphore.h>
+#include <windows.h>
+#include <iostream>
 
 class ProcessManagement{
     public :
         ProcessManagement();
+        ~ProcessManagement();
         bool submitToQueue(std::unique_ptr<Task> task);
         void executeTasks();
 
     private:
         struct SharedMemory{
             std::atomic<int> size;
-            char tasks[100][253];
+            char tasks[1000][256];
             int front;
-            int back;
+            int rear;
             void printShareMemory(){
                 std::cout<<size<<std::endl;
 
             }
         };
-        SharedMemory* shareMem;
-        int shmFd;
-        const char* SHM_NAME = "/my_queue";
-
+        SharedMemory* sharedMem;
+        std::mutex queueLock;
 };
 
 #endif
