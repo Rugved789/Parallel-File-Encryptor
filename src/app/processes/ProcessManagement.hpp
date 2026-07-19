@@ -2,12 +2,9 @@
 #define PROCESS_MANAGEMENT_HPP
 
 #include"Task.hpp"
-#include <queue>
 #include <memory>
 #include <mutex>
-#include <atomic>
-#include <windows.h>
-#include <iostream>
+#include <thread>
 
 class ProcessManagement{
     public :
@@ -17,18 +14,7 @@ class ProcessManagement{
         void executeTasks();
 
     private:
-        struct SharedMemory{
-            std::atomic<int> size;
-            char tasks[1000][256];
-            int front;
-            int rear;
-            void printShareMemory(){
-                std::cout<<size<<std::endl;
-
-            }
-        };
-        SharedMemory* sharedMem;
-        std::mutex queueLock;
+        void executeTask(std::unique_ptr<Task> task);
 };
 
 #endif
